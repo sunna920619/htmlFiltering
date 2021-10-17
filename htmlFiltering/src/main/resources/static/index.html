@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Http Filtering</title>
+<style type="text/css">
+	
+	div {
+		margin-bottom: 10px;
+	}
+	
+	th {
+		text-align: left;
+	}
+
+	.header-text {
+		font-weight: bold;
+		margin-right: 5px;
+	}
+	
+	#output-content-box .header-text,
+	#input-content-box .header-text {
+		margin-bottom: 10px;
+	}
+	
+	#input-content-box {
+		width: 300px;
+	}
+	
+	.value-box {
+		float: right;
+	}
+	
+		
+	#output-content-box {
+		width: 600px;
+	}
+
+</style>
+</head>
+<body>
+	<div id="input-content-box">
+		<div class="header-text">
+			[입력]
+		</div>
+		<div>
+			<span class="header-text">URL</span>
+			<span class="value-box"><input type="text" id="url" name="url" ></span>
+		</div>
+		<div>
+			<span class="header-text">Type</span>
+			<span class="value-box">
+				<select id="type" name="type">
+					<option value="01">HTML 태그 제외</option>
+					<option value="02">Text 전체</option>
+				</select>
+			</span>
+		</div>
+		<div>
+			<span class="header-text">출력 단위 묶음</span>
+			<span class="value-box"><input type="number" id="divisor" name="divisor" value="0"></span>
+		</div>
+		<div style="text-align:right;"><button id="print-btn">출력</button></div>
+	</div>
+	
+	<div id="output-content-box">
+		<div class="header-text">
+			[출력]
+		</div>
+		<div>
+			<div class="output-content">
+				<span class="header-text">몫 : </span>
+				<span id="mainText"></span>
+			</div>
+			<div class="output-content">
+				<span class="header-text">나머지 : </span>
+				<span id="remainderText"></span>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		$(document).on('click', '#print-btn', function(e) {
+		    
+        	$('#mainText').text('');
+        	$('#remainderText').text('');
+        	
+        	var url = $('#url').val();
+        	var type = $('#url').val();
+        	var divisor = $('#url').val();
+		    var requestParam = {
+		        url : $('#url').val(),
+		        type : $('#type').val(),
+		        divisor : $('#divisor').val()
+		    };
+		
+		    $.ajax({
+		        type: "get", 
+		        url: "/api/filter", 
+		        dataType: "json", 
+		        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		        data: requestParam,
+		        success: function(response) {
+		        	$('#mainText').text(response.mainText);
+		        	$('#remainderText').text(response.remainderText);
+		        }, 
+		    	error:function(request,status,error){
+		    		alert(request.responseJSON.errorMessage);
+		       	}
+		    });
+		});
+	</script>
+</body>
+</html>
