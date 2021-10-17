@@ -8,14 +8,15 @@
 6. 입력 받은 출력 묶음 단위로 묶음 단위 내 값을 몫으로, 그 외는 나머지로 출력한다.
 
 ## 패키지 구조
-
+<pre>
 com.wemakeprice.htmlfiltering
-	└ controller
-	└ domain
-	└ exception
-	└ service
-		└ impl
-	└ utils
+    └ controller
+    └ domain
+    └ exception
+    └ service
+        └ impl
+    └ utils
+</pre>
 
 ## 실행 방법
 
