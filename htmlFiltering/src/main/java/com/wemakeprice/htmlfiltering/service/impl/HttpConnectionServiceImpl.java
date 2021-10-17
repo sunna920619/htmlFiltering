@@ -6,10 +6,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.stereotype.Service;
+
 import com.wemakeprice.htmlfiltering.exception.ExceptionEnum;
 import com.wemakeprice.htmlfiltering.exception.FilteringApiException;
 import com.wemakeprice.htmlfiltering.service.HttpConnectionService;
 
+@Service
 public class HttpConnectionServiceImpl implements HttpConnectionService {
 	
 	@Override
@@ -49,7 +52,7 @@ public class HttpConnectionServiceImpl implements HttpConnectionService {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new FilteringApiException(ExceptionEnum.URL_CONNECTION_FAILED);
 		} finally { 
 			//http 요청 및 응답 완료 후 BufferedReader를 닫아줍니다
 			try {
@@ -60,8 +63,6 @@ public class HttpConnectionServiceImpl implements HttpConnectionService {
 				e.printStackTrace();
 			} 
 		}	
-		
-		return null;
 	}
 	
 }

@@ -1,18 +1,16 @@
 package com.wemakeprice.htmlfiltering.exception;
 
-import org.springframework.http.HttpStatus;
-
 public class ExceptionEntity {
 	
     private String errorCode;
     private String errorMessage;
 
-	public ExceptionEntity(HttpStatus status, String errorCode, String errorMessage) {
+	public ExceptionEntity(String errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
-	
-    public String getErrorCode() {
+
+	public String getErrorCode() {
 		return errorCode;
 	}
 
