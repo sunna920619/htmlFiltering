@@ -3,10 +3,13 @@ package com.wemakeprice.htmlfiltering.service.impl;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import org.springframework.stereotype.Service;
+
 import com.wemakeprice.htmlfiltering.exception.ExceptionEnum;
 import com.wemakeprice.htmlfiltering.exception.FilteringApiException;
 import com.wemakeprice.htmlfiltering.service.FilteringService;
 
+@Service
 public class FilteringServiceImpl implements FilteringService {
 	
 	private static final String WITHOUT_TAG = "01";

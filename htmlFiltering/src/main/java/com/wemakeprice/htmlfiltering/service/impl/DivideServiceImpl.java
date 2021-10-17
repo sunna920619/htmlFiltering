@@ -1,9 +1,12 @@
 package com.wemakeprice.htmlfiltering.service.impl;
 
 
+import org.springframework.stereotype.Service;
+
 import com.wemakeprice.htmlfiltering.domain.HtmlFilteringOut;
 import com.wemakeprice.htmlfiltering.service.DivideService;
 
+@Service
 public class DivideServiceImpl implements DivideService {
 	
 	@Override
