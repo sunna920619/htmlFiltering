@@ -6,7 +6,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpConnectionService {
+import com.wemakeprice.htmlfiltering.exception.ExceptionEnum;
+import com.wemakeprice.htmlfiltering.exception.FilteringApiException;
+import com.wemakeprice.htmlfiltering.service.HttpConnectionService;
+
+public class HttpConnectionServiceImpl implements HttpConnectionService {
+	
+	@Override
 	public String getHtmlByUrl(String urlText) {
 		
 		URL url = null;
@@ -33,14 +39,13 @@ public class HttpConnectionService {
 				
 				String line;
 				while ((line = br.readLine()) != null) {
-					System.out.println(line);
 					out.append(line);
 				}
 				
 				return out.toString();
 				
 			} else {
-				
+				throw new FilteringApiException(ExceptionEnum.URL_CONNECTION_FAILED);
 			}
 
 		} catch (IOException e) {
