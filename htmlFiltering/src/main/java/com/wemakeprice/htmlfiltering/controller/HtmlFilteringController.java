@@ -27,7 +27,7 @@ public class HtmlFilteringController {
 		Validator.validateInput(url, type, divisor);
 		
 		String htmlText = httpConnectionService.getHtmlByUrl(url);
-		System.out.println(htmlText);
+		
 		String filteredText = filteringService.filterHtmlText(htmlText, type);
 		
 		return divideService.divideText(filteredText, divisor);
