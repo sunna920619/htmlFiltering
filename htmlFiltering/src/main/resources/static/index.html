@@ -58,7 +58,7 @@
 		</div>
 		<div>
 			<span class="header-text">출력 단위 묶음</span>
-			<span class="value-box"><input type="number" id="divisor" name="divisor" value="0"></span>
+			<span class="value-box"><input type="number" id="divisor" name="divisor" value="1"></span>
 		</div>
 		<div style="text-align:right;"><button id="print-btn">출력</button></div>
 	</div>
@@ -89,6 +89,27 @@
         	var url = $('#url').val();
         	var type = $('#url').val();
         	var divisor = $('#url').val();
+        	
+        	if (!url) {
+        		alert('URL을 입력하세요.');
+        		return;
+        	}
+        	
+        	if (!(url.startsWith('https://') || url.startsWith('http://'))) {
+        		alert('잘못된 URL입니다.');
+        		return;
+        	}
+        	
+			if (!type) {
+				alert('type을 입력하세요.');
+				return;
+        	}
+			
+			if (divisor < 1) {
+				alert('출력 묶음 단위는 1 이상이어야 합니다.');
+				return;
+			}
+        	
 		    var requestParam = {
 		        url : $('#url').val(),
 		        type : $('#type').val(),
