@@ -3,6 +3,8 @@ package com.wemakeprice.htmlfiltering.service.impl;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import com.wemakeprice.htmlfiltering.exception.ExceptionEnum;
+import com.wemakeprice.htmlfiltering.exception.FilteringApiException;
 import com.wemakeprice.htmlfiltering.service.FilteringService;
 
 public class FilteringServiceImpl implements FilteringService {
@@ -23,9 +25,11 @@ public class FilteringServiceImpl implements FilteringService {
 		String[] alphabet = alphabetText.split("");
 		String[] numbers = numberText.split("");
 		
+		// 문자 & 숫자 요구사항에 따른 sorting
 		sortAlphabet(alphabet);
 		sortNumbers(numbers);
 		
+		// 문자-숫자 순서로 합치기
 		return combineAlphabetNumber(alphabet, numbers);
 	}
 
@@ -61,6 +65,8 @@ public class FilteringServiceImpl implements FilteringService {
 		} else if (WITH_TAG.equals(type)){
 			// TEXT 전체 (영문, 숫자만)
 			regex = "[^0-9a-zA-Z]|\\s";
+		} else {
+			throw new FilteringApiException(ExceptionEnum.TYPE_IS_WRONG);
 		}
 		
 		return htmlText.replaceAll(regex, "");

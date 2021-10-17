@@ -40,10 +40,9 @@ public class HttpConnectionService {
 				return out.toString();
 				
 			} else {
-				// 에러처리
+				
 			}
 
-	 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally { 
@@ -54,7 +53,7 @@ public class HttpConnectionService {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			} 
 		}	
 		
 		return null;

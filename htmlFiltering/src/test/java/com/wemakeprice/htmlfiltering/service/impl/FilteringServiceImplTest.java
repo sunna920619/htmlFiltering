@@ -2,9 +2,12 @@ package com.wemakeprice.htmlfiltering.service.impl;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import com.wemakeprice.htmlfiltering.exception.FilteringApiException;
 
 class FilteringServiceImplTest {
 	
@@ -77,7 +80,14 @@ class FilteringServiceImplTest {
 		String type = "02";
 		assertEquals("html0STARTtagThishastobereturnedtagEND1html", service.filterByType(htmlText, type));
 	}
-
+	@Test
+	void testFilterByType_존재하지_않는_유형_에러() {
+		assertThatThrownBy(() -> service.filterByType("aaa", "99"))
+        		.isInstanceOf(FilteringApiException.class)
+        		.hasMessageContaining("존재하지 않는 Type이 입력되었습니다.");
+	}
+	
+	
 	@Test
 	void testSortAlphabet_알파벳_정렬_소문자() {
 		String[] alphabet = new String[] {"a", "f", "e", "d", "y", "z", "y", "k"};
