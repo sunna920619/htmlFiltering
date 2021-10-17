@@ -21,7 +21,7 @@ class HttpConnectionServiceImplTest {
 	void HTTP_URL_연결_실패() {
 		assertThatThrownBy(() -> service.getHtmlByUrl("http://github.com/sunna920619"))
 				.isInstanceOf(FilteringApiException.class)
-				.hasMessageContaining("입력된 Url connection 에러가 발생했습니다.");
+				.hasMessageContaining("입력된 URL에 연결 중 connection 에러가 발생했습니다.");
 	}
 
 }

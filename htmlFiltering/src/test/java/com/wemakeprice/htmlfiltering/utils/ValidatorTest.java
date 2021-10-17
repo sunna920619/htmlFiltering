@@ -24,7 +24,7 @@ class ValidatorTest {
 	void testValidateInput_잘못된_Url() {
 		assertThatThrownBy(() -> Validator.validateInput("AAA", "", 1))
 			.isInstanceOf(FilteringApiException.class)
-			.hasMessageContaining("잘못된 Url 입니다.");
+			.hasMessageContaining("잘못된 URL입니다.");
 	}
 	
 	@ParameterizedTest
