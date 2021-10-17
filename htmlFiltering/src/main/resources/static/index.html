@@ -31,9 +31,25 @@
 		float: right;
 	}
 	
-		
 	#output-content-box {
 		width: 600px;
+	}
+	
+	#main-text {
+		position: relative;
+	    top: -31px;
+	    left: 31px;
+	    width: 600px;
+	    word-wrap: break-word;
+        margin-bottom: 10px;
+	}
+	
+	#remainder-text {
+	    position: relative;
+    	top: -34px;
+    	left: 65px;
+    	width: 600px;
+    	word-wrap: break-word;
 	}
 
 </style>
@@ -69,12 +85,12 @@
 		</div>
 		<div>
 			<div class="output-content">
-				<span class="header-text">몫 : </span>
-				<span id="mainText"></span>
+				<div class="header-text">몫 : </div>
+				<div id="main-text"></div>
 			</div>
 			<div class="output-content">
-				<span class="header-text">나머지 : </span>
-				<span id="remainderText"></span>
+				<div class="header-text">나머지 : </div>
+				<div id="remainder-text"></div>
 			</div>
 		</div>
 	</div>
@@ -83,8 +99,8 @@
 	<script>
 		$(document).on('click', '#print-btn', function(e) {
 		    
-        	$('#mainText').text('');
-        	$('#remainderText').text('');
+        	$('#main-text').text('');
+        	$('#remainder-text').text('');
         	
         	var url = $('#url').val();
         	var type = $('#url').val();
@@ -123,8 +139,8 @@
 		        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		        data: requestParam,
 		        success: function(response) {
-		        	$('#mainText').text(response.mainText);
-		        	$('#remainderText').text(response.remainderText);
+		        	$('#main-text').text(response.mainText);
+		        	$('#remainder-text').text(response.remainderText);
 		        }, 
 		    	error:function(request,status,error){
 		    		alert(request.responseJSON.errorMessage);
